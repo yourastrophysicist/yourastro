@@ -495,6 +495,24 @@ function updateWinampUI() {
     });
 }
 
+let synthInterval = null;
+let noteStep = 0;
+
+const trackMelodies = [
+    // Track 1: I Love My Computer (C Major Hyperpop Lead)
+    [261.63, 329.63, 392.00, 523.25, 659.25, 523.25, 392.00, 329.63],
+    // Track 2: Start Button (E Minor Electro Wave)
+    [329.63, 392.00, 493.88, 659.25, 783.99, 659.25, 493.88, 392.00],
+    // Track 3: Info Superhighway (F Major Chiptune)
+    [349.23, 440.00, 523.25, 698.46, 880.00, 698.46, 523.25, 440.00],
+    // Track 4: Cyber Dream (A Minor Ambient Pulse)
+    [220.00, 261.63, 329.63, 440.00, 523.25, 440.00, 329.63, 261.63],
+    // Track 5: Y2K System Shock (G Major Bass Synth)
+    [196.00, 246.94, 293.66, 392.00, 493.88, 392.00, 293.66, 246.94],
+    // Track 6: Binary Hearts (D Minor Synthpop)
+    [293.66, 349.23, 440.00, 587.33, 698.46, 587.33, 440.00, 349.23]
+];
+
 function startWinampAudioSynth() {
     try {
         if (!audioCtx) {
@@ -505,28 +523,63 @@ function startWinampAudioSynth() {
         }
         stopWinampAudioSynth();
         
-        synthOsc = audioCtx.createOscillator();
-        synthGain = audioCtx.createGain();
+        noteStep = 0;
+        const melody = trackMelodies[winampCurrentTrack % trackMelodies.length];
         
-        const track = winampPlaylist[winampCurrentTrack];
-        synthOsc.type = 'triangle';
-        synthOsc.frequency.setValueAtTime(track.freq || 440, audioCtx.currentTime);
-        
-        synthGain.gain.setValueAtTime(winampVolume * 0.08, audioCtx.currentTime);
-        
-        synthOsc.connect(synthGain);
-        synthGain.connect(audioCtx.destination);
-        
-        synthOsc.start();
+        // Play melodic electronic synth notes & bass beat pulse every 180ms
+        synthInterval = setInterval(() => {
+            if (!winampIsPlaying || winampIsPaused || !audioCtx) return;
+            
+            const freq = melody[noteStep % melody.length];
+            noteStep++;
+            
+            // Lead Synth Note
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            
+            const volume = winampVolume * 0.25;
+            gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(volume, audioCtx.currentTime + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.16);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.17);
+            
+            // Bass Kick Pulse on rhythmic beats
+            if (noteStep % 4 === 1) {
+                const bassOsc = audioCtx.createOscillator();
+                const bassGain = audioCtx.createGain();
+                
+                bassOsc.type = 'sine';
+                bassOsc.frequency.setValueAtTime(110, audioCtx.currentTime);
+                bassOsc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.12);
+                
+                bassGain.gain.setValueAtTime(winampVolume * 0.3, audioCtx.currentTime);
+                bassGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.14);
+                
+                bassOsc.connect(bassGain);
+                bassGain.connect(audioCtx.destination);
+                
+                bassOsc.start();
+                bassOsc.stop(audioCtx.currentTime + 0.15);
+            }
+        }, 180);
+
     } catch (e) {
         // Audio synthesis fallback
     }
 }
 
 function stopWinampAudioSynth() {
-    if (synthOsc) {
-        try { synthOsc.stop(); } catch(e){}
-        synthOsc = null;
+    if (synthInterval) {
+        clearInterval(synthInterval);
+        synthInterval = null;
     }
 }
 
