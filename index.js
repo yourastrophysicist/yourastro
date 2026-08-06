@@ -10,12 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTrayClock();
     setInterval(updateTrayClock, 1000);
     
-    // Open main Windows by default on startup
-    openWindow('win-sys');
-    openWindow('win-about');
-    openWindow('win-research');
-    
-    // Sync taskbar tabs
+    // Start clean with no windows open on startup
     rebuildTaskbarTabs();
     
     // Global mousedown listener to handle window focus activation
