@@ -86,6 +86,16 @@
                 </svg>
                 <div class="icon-label">Resume.txt</div>
             </div>
+
+            <div class="desktop-icon" onclick="openWindow('win-pdf')">
+                <svg class="icon-svg" viewBox="0 0 32 32">
+                    <path d="M 6 4 L 20 4 L 26 10 L 26 28 L 6 28 Z" fill="#cc0000" stroke="#000000" stroke-width="2"/>
+                    <path d="M 20 4 L 20 10 L 26 10 Z" fill="#ff6666" stroke="#000000" stroke-width="2"/>
+                    <rect x="8" y="14" width="16" height="10" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+                    <text x="16" y="22" font-size="7" font-weight="bold" fill="#cc0000" text-anchor="middle" font-family="sans-serif">PDF</text>
+                </svg>
+                <div class="icon-label">CV_LaTeX.pdf</div>
+            </div>
         </div>
 
         <!-- Ambient Cosmic ASCII Header Widget in Desktop -->
@@ -118,8 +128,8 @@
                         <h3 class="pixel-heading">System info</h3>
                         <p class="sys-item"><strong>User</strong> Jessica Syafaq Muthmaina</p>
                         <p class="sys-item"><strong>Focus</strong> astrophysics and cosmology</p>
-                        <p class="sys-item"><strong>Host</strong> M.Sc. UNIPD (Padova)</p>
-                        <p class="sys-item"><strong>Base</strong> B.Sc. UGM (Gadjah Mada)</p>
+                        <p class="sys-item"><strong>Host</strong> M.Sc. UNIPD (Padova, Italy)</p>
+                        <p class="sys-item"><strong>Base</strong> B.Sc. UGM (Yogyakarta, Indonesia)</p>
                     </div>
                 </div>
                 <fieldset class="sys-fieldset">
@@ -335,6 +345,315 @@
                     </p>
                 </div>
             </div>
+        <!-- 7. LATEX CV PDF READER WINDOW -->
+        <div class="window" id="win-pdf" style="display: none; top: 8%; left: 18%; width: 680px; height: 580px; z-index: 102;">
+            <div class="title-bar" onmousedown="dragStart(event, 'win-pdf')">
+                <div class="title-bar-text">CV_LaTeX.pdf - Adobe Acrobat Reader [moderncv]</div>
+                <div class="title-bar-controls">
+                    <button class="tbtn" onclick="minimizeWindow('win-pdf')">_</button>
+                    <button class="tbtn" onclick="maximizeWindow('win-pdf')">口</button>
+                    <button class="tbtn" onclick="closeWindow('win-pdf')">X</button>
+                </div>
+            </div>
+            <div class="window-body pdf-window-body">
+                <div class="notepad-menu">
+                    <span>File</span><span>Edit</span><span>View</span><span>Document</span><span>Tools</span><span>Help</span>
+                </div>
+                <div class="pdf-toolbar">
+                    <button class="pdf-toolbar-btn active-tab" id="btn-pdf-rendered" onclick="switchPdfTab('rendered')">📄 Rendered PDF</button>
+                    <button class="pdf-toolbar-btn" id="btn-pdf-tex" onclick="switchPdfTab('tex')">💻 TeX Source</button>
+                    <span class="toolbar-divider"></span>
+                    <button class="pdf-toolbar-btn" onclick="alert('Printing document...')">🖨️ Print</button>
+                    <button class="pdf-toolbar-btn" onclick="alert('Downloading TeX source...')">💾 Save</button>
+                    <span class="toolbar-divider"></span>
+                    <span>Page 1 / 1</span>
+                    <span class="toolbar-divider"></span>
+                    <span>Zoom: 100%</span>
+                </div>
+
+                <div class="pdf-viewer-area">
+                    <!-- Rendered Document View -->
+                    <div id="pdf-rendered-view" class="pdf-page-sheet">
+                        <div class="pdf-cv-header">
+                            <div class="pdf-cv-title">Jessica Syafaq Muthmaina</div>
+                            <div style="font-weight: 600; font-size: 12.5px; color: #333;">jessicasyafaq.muthmaina@studenti.unipd.it</div>
+                            <div class="pdf-cv-contact">
+                                <span>📱 +39 352 088 4100</span>
+                                <span>🏠 Padua, Italy</span>
+                                <span>🔗 <a href="https://www.linkedin.com/in/syafaqmuth/" target="_blank">in/syafaqmuth</a></span>
+                            </div>
+                        </div>
+
+                        <div class="pdf-cv-section-heading">Profile Summary</div>
+                        <div class="pdf-entry-desc">
+                            Observational Astrophysics and Cosmology Master's student at University of Padua with published research in high-energy quasar stability using VLBI data and Python pipelines. Proficient in data analysis and statistical modeling for large datasets.
+                        </div>
+
+                        <div class="pdf-cv-section-heading">Publications</div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span>"Implementation of Allan Standard Deviation Technique in Stability Analysis of Quasar 4C31.61"</span>
+                                <span>2024</span>
+                            </div>
+                            <div class="pdf-entry-sub">Published in <strong>IOPScience - Journal of Physics</strong></div>
+                            <div class="pdf-entry-desc">
+                                Analyzed positional stability of Quasar 4C31.61 using VLBI data processed with VieVS software, demonstrating quasar's reliability for International Celestial Reference Frame (ICRF).<br>
+                                🔗 <a href="https://iopscience.iop.org/article/10.1088/1742-6596/2773/1/012007/meta" target="_blank">DOI 10.1088/1742-6596/2773/1/012007</a>
+                            </div>
+                        </div>
+
+                        <div class="pdf-cv-section-heading">Education</div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span><a href="https://www.unipd.it/en/" target="_blank">University of Padua</a> — M.Sc. in Astrophysics and Cosmology</span>
+                                <span>Padua, Italy (2025–Present)</span>
+                            </div>
+                            <div class="pdf-entry-desc">Concentration: <strong>Observational and Computational Astrophysics</strong>.</div>
+                        </div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span><a href="https://fisika.fmipa.ugm.ac.id/" target="_blank">Universitas Gadjah Mada</a> — B.Sc. in Physics</span>
+                                <span>Yogyakarta, Indonesia (2019–2023)</span>
+                            </div>
+                            <div class="pdf-entry-desc">
+                                Concentration: <strong>Theoretical and Computational Physics</strong>.<br>
+                                Bachelor thesis: <em>Implementation of Allan Standard Deviation Technique in Variability Analysis of 4C31.61 Quasar</em>. 🔗 <a href="https://etd.repository.ugm.ac.id/penelitian/detail/225834" target="_blank">Link to Publication</a>
+                            </div>
+                        </div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span><a href="https://pacmann.io" target="_blank">Pacmann Academy</a> — Data Science for Research</span>
+                                <span>Jakarta, Indonesia (2023–2024)</span>
+                            </div>
+                            <div class="pdf-entry-desc">
+                                Final project: <em>Data-driven analysis of gender inequality in Indonesia using advanced statistical methods.</em> 🔗 <a href="https://arxiv.org/abs/2412.00012" target="_blank">arXiv:2412.00012</a>
+                            </div>
+                        </div>
+
+                        <div class="pdf-cv-section-heading">Professional Experience</div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span><a href="https://brin.go.id/" target="_blank">National Research and Innovation Agency (BRIN)</a> — Research Intern</span>
+                                <span>01/2023 – 08/2023</span>
+                            </div>
+                            <div class="pdf-entry-desc">Processed and analyzed VLBI astronomical datasets using VieVS software and Paris Observatory data for celestial reference frame research.</div>
+                        </div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span><a href="https://esdm.go.id/" target="_blank">Ministry of Energy and Mineral Resources (ESDM)</a> — Technical Writer</span>
+                                <span>05/2024 – 12/2024</span>
+                            </div>
+                            <div class="pdf-entry-desc">Translated complex engineering requirements into clear documentation for 200+ stakeholders across technical and business teams.</div>
+                        </div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span><a href="https://savingnextgeninesia.or.id/" target="_blank">Saving Next Generation Indonesia</a> — Data Analyst & Field Researcher</span>
+                                <span>01/2024 – 03/2024</span>
+                            </div>
+                            <div class="pdf-entry-desc">Evaluated program effectiveness using Fuzzy Set Qualitative Comparative Analysis (fsQCA), producing policy recommendations.</div>
+                        </div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span><a href="https://startupcampus.id/" target="_blank">Startup Campus</a> — Data Science Intern</span>
+                                <span>07/2022 – 12/2022</span>
+                            </div>
+                            <div class="pdf-entry-desc">Designed interactive Tableau dashboards, conducted customer segmentation using RFM analysis and K-Means, and performed A/B testing analysis.</div>
+                        </div>
+
+                        <div class="pdf-cv-section-heading">Teaching & Leadership Experience</div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span>Universitas Gadjah Mada — Teaching Assistant & Lab Assistant</span>
+                                <span>08/2022 – 12/2022</span>
+                            </div>
+                            <div class="pdf-entry-desc">Guided 30+ students through laboratory experiments and helped with exam preparation.</div>
+                        </div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span>Sadar Setara — Founder</span>
+                                <span>03/2025 – Present</span>
+                            </div>
+                            <div class="pdf-entry-desc">Founded a social advocacy platform focused on gender equality and human rights.</div>
+                        </div>
+                        <div class="pdf-entry">
+                            <div class="pdf-entry-row">
+                                <span>Ruang Postulat — Co-Founder</span>
+                                <span>01/2024 – 12/2024</span>
+                            </div>
+                            <div class="pdf-entry-desc">Established platform for intellectual discourse on science and philosophy.</div>
+                        </div>
+
+                        <div class="pdf-cv-section-heading">Languages</div>
+                        <div class="pdf-entry-desc">
+                            • <strong>English</strong> [Advanced] - C1 &nbsp;&nbsp;&nbsp;&nbsp;
+                            • <strong>French</strong> [Elementary] - A2 &nbsp;&nbsp;&nbsp;&nbsp;
+                            • <strong>Indonesian</strong> [Native]
+                        </div>
+
+                        <div class="pdf-cv-section-heading">References</div>
+                        <div class="pdf-entry">
+                            <strong>Prof. Stefano Ciroi</strong> — Professore Associato<br>
+                            Dipartimento di Fisica e Astronomia "Galileo Galilei", Università degli Studi di Padova<br>
+                            <code>stefano.ciroi@unipd.it</code>
+                        </div>
+                        <div class="pdf-entry" style="margin-top: 8px;">
+                            <strong>Dr. Ibnu Nurul Huda</strong> — Researcher<br>
+                            National Research and Innovation Agency (BRIN), Research Center for Computing<br>
+                            <code>ibnu.nurul.huda@brin.go.id</code>
+                        </div>
+                    </div>
+
+                    <!-- TeX Source Code View -->
+                    <div id="pdf-tex-view" class="pdf-tex-code-area" style="display: none;">\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{banking}
+\moderncvcolor{black}
+\nopagenumbers{}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage[scale=0.915]{geometry}
+\usepackage{import}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{amssymb}
+
+% Personal Data
+\name{Jessica Syafaq}{Muthmaina}
+\newcommand*{\customcventry}[7][.13em]{
+\begin{tabular}{@{}l}
+{\bfseries #4} \
+{\itshape #3}
+\end{tabular}
+\hfill
+\begin{tabular}{l@{}}
+{\bfseries #5} \
+{\itshape #2}
+\end{tabular}
+\ifx&#7&%
+\else{\
+\begin{minipage}{\maincolumnwidth}%
+\small#7%
+\end{minipage}}\fi%
+\par\addvspace{#1}}
+
+\begin{document}
+\makecvtitle
+\vspace*{-12mm}
+
+% Contact Info
+\begin{center}\textbf{jessicasyafaq.muthmaina@studenti.unipd.it}\end{center}
+\begin{center}
+\begin{tabular}{ c c c }
+\faMobile \enspace +39 352 088 4100 \enspace & \faHome \enspace Padua, Italy & \enspace \faLinkedin \enspace \color{blue} \href{https://www.linkedin.com/in/syafaqmuth/}{in/syafaqmuth}
+\end{tabular}
+\end{center}
+
+% Profile
+\section{Profile Summary}
+{Observational Astrophysics and Cosmology Master's student at University of Padua with published research in high-energy quasar stability using VLBI data and Python pipelines. Proficient in data analysis and statistical modeling for large datasets.}
+
+% Publications
+\section{Publications}
+
+\textbf{"Implementation of Allan Standard Deviation Technique in Stability Analysis of Quasar 4C31.61"}
+
+Published in \textbf{IOPScience - Journal of Physics} (2024).
+
+Analyzed positional stability of Quasar 4C31.61 using VLBI data processed with VieVS software, demonstrating quasar's reliability for International Celestial Reference Frame (ICRF).
+\textcolor{blue}{\href{https://iopscience.iop.org/article/10.1088/1742-6596/2773/1/012007/meta}{\textit{DOI 10.1088/1742-6596/2773/1/012007}}}.
+
+% Education
+\section{Education}
+
+\customcventry{2025--Present}{\color{blue}\href{https://www.unipd.it/en/}{University of Padua}}{M.Sc. in Astrophysics and Cosmology}{Padua, Italy}{}{
+Concentration: \textbf{Observational and Computational Astrophysics}.
+}
+\vspace{1em}
+
+\customcventry{2019--2023}{\color{blue}\href{https://fisika.fmipa.ugm.ac.id/}{Universitas Gadjah Mada}}{B.Sc. in Physics}{Yogyakarta, Indonesia}{}{
+Concentration: \textbf{Theoretical and Computational Physics}.
+\\Bachelor thesis: \textit{Implementation of Allan Standard Deviation Technique in Variability Analysis of 4C31.61 Quasar}. \textcolor{blue}{\href{https://etd.repository.ugm.ac.id/penelitian/detail/225834}{\textit{Link to Publication}}}.
+}
+\vspace{1em}
+
+\customcventry{2023--2024}{\color{blue}\href{https://pacmann.io}{Pacmann Academy}}{Professional Training: Data Science for Research}{Jakarta, Indonesia}{}{
+Final project: \textit{Data-driven analysis of gender inequality in Indonesia using advanced statistical methods.} \textcolor{blue}{\href{https://arxiv.org/abs/2412.00012}{\textit{Link to Publication}}}.
+}
+
+% Experience
+\section{Professional Experience}
+
+\customcventry{01/2023 ‐ 08/2023}{{\color{blue}\href{https://brin.go.id/}{National Research and Innovation Agency (BRIN)}}}{Research Intern}{Bandung, Indonesia}{}{
+Processed and analyzed VLBI astronomical datasets using VieVS software and Paris Observatory data for celestial reference frame research.
+}
+\vspace{1em}
+\customcventry{05/2024 ‐ 12/2024}{{\color{blue}\href{https://esdm.go.id/}{Ministry of Energy and Mineral Resources (ESDM)}}}{Technical Writer}{Yogyakarta, Indonesia}{}{
+Translated complex engineering requirements into clear documentation for 200+ stakeholders across technical and business teams.}
+\vspace{1em}
+
+\customcventry{01/2024 ‐ 03/2024}{{\color{blue}\href{https://savingnextgeninesia.or.id/}{Saving Next Generation Indonesia}}}{Data Analyst \& Field Researcher}{Jakarta, Indonesia}{}{
+Evaluated program effectiveness using Fuzzy Set Qualitative Comparative Analysis (fsQCA), producing policy recommendations.
+}
+\vspace{1em}
+\customcventry{07/2022 ‐ 12/2022}{{\color{blue}\href{https://startupcampus.id/}{Startup Campus}}}{Data Science Intern}{Jakarta, Indonesia}{}{
+Designed interactive Tableau dashboards, conducted customer segmentation using RFM analysis and K-Means, and performed A/B testing analysis.
+}
+
+% Teaching & Leadership
+\section{Teaching \& Leadership Experience}
+
+\customcventry{08/2022 ‐ 12/2022}{Universitas Gadjah Mada}{Teaching Assistant}{Yogyakarta, Indonesia}{}{
+Helped students with preparation for exams, evaluated assignments for 25+ students.
+}
+\vspace{1em}
+\customcventry{08/2022 ‐ 12/2022}{Universitas Gadjah Mada}{Lab Assistant}{Yogyakarta, Indonesia}{}{
+Guided 30+ students through laboratory experiments, clarifying physics concepts and experimental procedures.
+}
+\vspace{1em}
+\customcventry{03/2025 ‐ Present}{Sadar Setara}{Founder} {Garut, Indonesia}{}{
+Founded a social advocacy platform focused on gender equality and human rights.
+}
+\vspace{1em}
+\customcventry{01/2024 ‐ 12/2024}{Ruang Postulat}{Co-Founder}{Yogyakarta, Indonesia}{}{
+Established platform for intellectual discourse on science and philosophy.
+}
+
+% Languages
+\section{Languages}
+\begin{multicols}{3}
+    \begin{itemize}[label=\textbullet]
+    \item \textbf{English} [Advanced] - C1
+    \item \textbf{French} [Elementary] - A2
+    \item \textbf{Indonesian} [Native]
+    \end{itemize}
+\end{multicols}
+
+% References
+\section{References}
+\begin{multicols}{2}
+\begin{itemize}[label=\textbullet, left=0pt, itemsep=10pt]
+    \item \textbf{Prof. Stefano Ciroi} \\
+    Professore Associato \\
+    Dipartimento di Fisica e Astronomia "Galileo Galilei"\\
+    Università degli Studi di Padova \\
+    VICOLO DELL' OSSERVATORIO, 3 \\
+    Padova, Italy \\
+    \texttt{stefano.ciroi@unipd.it}
+\end{itemize}
+
+\begin{itemize}[label=\textbullet, left=0pt, itemsep=10pt]
+    \item \textbf{Dr. Ibnu Nurul Huda} \\
+    Researcher \\
+    National Research and Innovation Agency (BRIN) \\
+    Research Center for Computing \\
+    Jalan Raya Bogor Km. 46 \\
+    Bogor 16911, Indonesia \\
+    \texttt{ibnu.nurul.huda@brin.go.id}
+\end{itemize}
+\end{multicols}
+
+\enddocument</div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -394,6 +713,9 @@
             </div>
             <div class="start-item" onclick="launchAndClose('win-cv')">
                 <span class="item-name">Resume.txt</span>
+            </div>
+            <div class="start-item" onclick="launchAndClose('win-pdf')">
+                <span class="item-name">CV_LaTeX.pdf</span>
             </div>
             <hr class="start-divider">
             <div class="start-item" onclick="closeAllAndAlert()">
