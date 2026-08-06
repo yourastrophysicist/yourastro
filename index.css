@@ -126,19 +126,19 @@ body {
 }
 
 .ascii-art {
-    font-size: 9px;
-    line-height: 1.1;
-    color: var(--cyber-blue);
-    text-shadow: 0 0 5px rgba(90, 184, 255, 0.6);
+    font-size: 10px;
+    line-height: 1.15;
+    color: #aae0ff;
+    text-shadow: 0 0 6px rgba(170, 224, 255, 0.9), 0 0 12px rgba(255, 160, 220, 0.5);
 }
 
 .ascii-sub {
     font-size: 11px;
     letter-spacing: 2px;
-    margin-top: 5px;
+    margin-top: 6px;
     color: var(--cyber-pink);
     text-transform: uppercase;
-    text-shadow: 0 0 3px rgba(255, 106, 184, 0.5);
+    text-shadow: 0 0 5px rgba(255, 106, 184, 0.7);
 }
 
 /* Windows 98 Retro Window Styles */
