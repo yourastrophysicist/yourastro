@@ -722,6 +722,12 @@ Established platform for intellectual discourse on science and philosophy.
                         <span>WINAMP PLAYLIST - Ninajirachi (ILMC)</span>
                         <a href="https://soundcloud.com/ninajirachi/sets/ilmc" target="_blank" class="wa-sc-link">🌐 SoundCloud Album</a>
                     </div>
+                    
+                    <!-- Embedded SoundCloud Player for Stream Playback -->
+                    <div class="sc-embed-container" style="margin-bottom: 6px; border: 1px solid #000044; background: #000;">
+                        <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ninajirachi/sets/ilmc&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false" width="100%" height="166" frameborder="0" allow="autoplay"></iframe>
+                    </div>
+
                     <ul class="playlist-list" id="winamp-playlist-items">
                         <li class="pl-item active" onclick="winampSelectTrack(0)"><span>1. Ninajirachi - I Love My Computer</span> <span class="pl-dur">3:24</span></li>
                         <li class="pl-item" onclick="winampSelectTrack(1)"><span>2. Ninajirachi - Start Button</span> <span class="pl-dur">2:58</span></li>
@@ -809,6 +815,7 @@ Established platform for intellectual discourse on science and philosophy.
         </div>
     </div>
 
+    <script src="https://w.soundcloud.com/player/api.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
