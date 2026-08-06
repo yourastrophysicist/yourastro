@@ -97,15 +97,12 @@
                 <div class="icon-label">CV_LaTeX.pdf</div>
             </div>
 
-            <div class="desktop-icon" onclick="openWindow('win-ipod')">
+            <div class="desktop-icon" onclick="openWindow('win-winamp')">
                 <svg class="icon-svg" viewBox="0 0 32 32">
-                    <rect x="7" y="3" width="18" height="26" rx="3" fill="#cccccc" stroke="#000000" stroke-width="1.5"/>
-                    <rect x="9" y="5" width="14" height="18" rx="1" fill="#111111" stroke="#333333" stroke-width="1"/>
-                    <circle cx="16" cy="25.5" r="2" fill="#e6e6e6" stroke="#666666" stroke-width="0.8"/>
-                    <rect x="15" y="24.5" width="2" height="2" fill="none" stroke="#666666" stroke-width="0.5"/>
-                    <path d="M 12 12 L 20 12 L 16 17 Z" fill="#ff007f"/>
+                    <rect x="4" y="4" width="24" height="24" fill="#202020" stroke="#000000" stroke-width="2"/>
+                    <path d="M 18 6 L 10 17 L 16 17 L 13 26 L 23 13 L 16 13 Z" fill="#ffcc00" stroke="#ffaa00" stroke-width="1"/>
                 </svg>
-                <div class="icon-label">iPod_Touch.app</div>
+                <div class="icon-label">Winamp.exe</div>
             </div>
         </div>
 
@@ -669,73 +666,82 @@ Established platform for intellectual discourse on science and philosophy.
             </div>
         </div>
 
-        <!-- 8. IPOD TOUCH MEDIA PLAYER WINDOW -->
-        <div class="window ipod-window" id="win-ipod" style="display: none; top: 6%; left: 30%; width: 360px; z-index: 103;">
-            <div class="title-bar ipod-title-bar" onmousedown="dragStart(event, 'win-ipod')">
-                <div class="title-bar-text">iPod Touch - Music Player</div>
+        <!-- 8. WINAMP MEDIA PLAYER WINDOW -->
+        <div class="window winamp-window" id="win-winamp" style="display: none; top: 10%; left: 25%; width: 450px; z-index: 103;">
+            <div class="title-bar winamp-title-bar" onmousedown="dragStart(event, 'win-winamp')">
+                <div class="title-bar-text">WINAMP - Ninajirachi [I Love My Computer]</div>
                 <div class="title-bar-controls">
-                    <button class="tbtn" onclick="minimizeWindow('win-ipod')">_</button>
-                    <button class="tbtn" onclick="maximizeWindow('win-ipod')">口</button>
-                    <button class="tbtn" onclick="closeWindow('win-ipod')">X</button>
+                    <button class="tbtn" onclick="minimizeWindow('win-winamp')">_</button>
+                    <button class="tbtn" onclick="maximizeWindow('win-winamp')">口</button>
+                    <button class="tbtn" onclick="closeWindow('win-winamp')">X</button>
                 </div>
             </div>
-            <div class="window-body ipod-body">
-                <!-- iPod Touch Metal Chassis Frame -->
-                <div class="ipod-chassis">
-                    <!-- iPod Screen Glass Panel -->
-                    <div class="ipod-screen">
-                        <!-- iOS Glass Header Bar -->
-                        <div class="ipod-header-bar">
-                            <span class="ipod-signal">••••• iPod</span>
-                            <span class="ipod-screen-title">Now Playing</span>
-                            <span class="ipod-battery">⚡ 100%</span>
+            <div class="window-body winamp-body">
+                <!-- Winamp Main Display Rack -->
+                <div class="winamp-main-rack">
+                    <div class="winamp-lcd" style="display: flex; gap: 10px; align-items: center;">
+                        <img src="https://i1.sndcdn.com/artworks-Tcz16NlSzuUEPPVv-3k3NJg-t1080x1080.jpg" alt="Ninajirachi - I Love My Computer" style="width: 54px; height: 54px; border-radius: 4px; border: 1px solid #00ff00; object-fit: cover;">
+                        <div style="flex: 1;">
+                            <div class="lcd-top-row">
+                                <div class="lcd-time" id="winamp-time">00:00</div>
+                                <div class="lcd-kbps">320<span class="kbps-unit">kbps</span> 44<span class="kbps-unit">kHz</span></div>
+                                <div class="lcd-stereo">STEREO</div>
+                            </div>
+                            <div class="lcd-ticker-container">
+                                <div class="lcd-ticker" id="winamp-ticker">1. Ninajirachi - Fuck My Computer (3:24) *** WINAMP v2.91 ***</div>
+                            </div>
+                            <canvas id="winamp-spectrum" width="320" height="24"></canvas>
                         </div>
+                    </div>
 
-                        <!-- Music Cover Art & Track Meta -->
-                        <div class="ipod-now-playing">
-                            <div class="ipod-artwork-wrap">
-                                <div class="art-y2k-disc">
-                                    <div class="art-title">ILMC</div>
-                                    <div class="art-artist">Ninajirachi</div>
-                                </div>
-                            </div>
-
-                            <div class="ipod-track-meta">
-                                <div class="ipod-song-name">Fuck My Computer</div>
-                                <div class="ipod-artist-name">Ninajirachi — I Love My Computer</div>
-                            </div>
+                    <div class="winamp-controls-row">
+                        <!-- Playback Buttons -->
+                        <div class="winamp-btn-group">
+                            <button class="wa-btn" onclick="winampPrev()" title="Previous Track">|&lt;</button>
+                            <button class="wa-btn wa-play" onclick="winampPlay()" title="Play">&gt;</button>
+                            <button class="wa-btn" onclick="winampPause()" title="Pause">||</button>
+                            <button class="wa-btn" onclick="winampStop()" title="Stop">[]</button>
+                            <button class="wa-btn" onclick="winampNext()" title="Next Track">&gt;|</button>
                         </div>
-
-                        <!-- Embedded SoundCloud Player widget for Stream Playback -->
-                        <div class="ipod-sc-container">
-                            <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ninajirachi/sets/ilmc&color=%23ff007f&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false" width="100%" height="166" frameborder="0" allow="autoplay"></iframe>
-                        </div>
-
-                        <!-- iPod Transport Controls -->
-                        <div class="ipod-controls-area">
-                            <div class="ipod-scrubber">
-                                <span id="ipod-time-curr">0:00</span>
-                                <input type="range" id="ipod-seek-bar" min="0" max="100" value="0" oninput="ipodSeek(this.value)">
-                                <span id="ipod-time-rem">-3:24</span>
-                            </div>
-
-                            <div class="ipod-btn-row">
-                                <button class="ipod-btn" onclick="ipodPrev()">|◄◄</button>
-                                <button class="ipod-btn ipod-btn-play" id="ipod-play-btn" onclick="ipodTogglePlay()">►</button>
-                                <button class="ipod-btn" onclick="ipodNext()">►►|</button>
-                            </div>
-
-                            <div class="ipod-vol-row">
-                                <span style="color:#aaa; font-size:10px;">VOL</span>
-                                <input type="range" id="ipod-vol-bar" min="0" max="100" value="80" oninput="ipodSetVolume(this.value)">
-                                <span style="color:#fff; font-size:10px;">100%</span>
+                        
+                        <!-- Volume Control -->
+                        <div class="winamp-sliders">
+                            <div class="wa-slider-wrap">
+                                <span class="wa-label">VOL: <span id="winamp-vol-val">80%</span></span>
+                                <input type="range" id="winamp-vol" min="0" max="100" value="80" oninput="winampSetVolume(this.value)">
                             </div>
                         </div>
                     </div>
 
-                    <!-- iPod Home Button -->
-                    <div class="ipod-home-button" onclick="closeWindow('win-ipod')" title="Home">
-                        <div class="home-square"></div>
+                    <!-- Track Position Seek Bar -->
+                    <div class="winamp-seek-wrap">
+                        <input type="range" id="winamp-seek" min="0" max="100" value="0" oninput="winampSeek(this.value)">
+                    </div>
+                </div>
+
+                <!-- Winamp Playlist & Stream Section -->
+                <div class="winamp-playlist-rack">
+                    <div class="playlist-header">
+                        <span>WINAMP PLAYLIST - Ninajirachi (ILMC)</span>
+                        <a href="https://soundcloud.com/ninajirachi/sets/ilmc" target="_blank" class="wa-sc-link">🌐 SoundCloud Album</a>
+                    </div>
+                    
+                    <!-- Embedded SoundCloud Player for Stream Playback -->
+                    <div class="sc-embed-container" style="margin-bottom: 6px; border: 1px solid #000044; background: #000;">
+                        <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ninajirachi/sets/ilmc&color=%23ff007f&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false" width="100%" height="166" frameborder="0" allow="autoplay"></iframe>
+                    </div>
+
+                    <ul class="playlist-list" id="winamp-playlist-items">
+                        <li class="pl-item active" onclick="winampSelectTrack(0)"><span>1. Ninajirachi - Fuck My Computer</span> <span class="pl-dur">3:24</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(1)"><span>2. Ninajirachi - Start Button</span> <span class="pl-dur">2:58</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(2)"><span>3. Ninajirachi - Info Superhighway</span> <span class="pl-dur">3:45</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(3)"><span>4. Ninajirachi - Cyber Dream</span> <span class="pl-dur">4:12</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(4)"><span>5. Ninajirachi - Y2K System Shock</span> <span class="pl-dur">3:15</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(5)"><span>6. Ninajirachi - Binary Hearts</span> <span class="pl-dur">3:50</span></li>
+                    </ul>
+                    <div class="playlist-footer">
+                        <span id="pl-total-info">6 tracks | 21:24 total time</span>
+                        <button class="wa-mini-btn" onclick="winampPlay()">PLAY ALL</button>
                     </div>
                 </div>
             </div>
@@ -802,8 +808,8 @@ Established platform for intellectual discourse on science and philosophy.
             <div class="start-item" onclick="launchAndClose('win-pdf')">
                 <span class="item-name">CV_LaTeX.pdf</span>
             </div>
-            <div class="start-item" onclick="launchAndClose('win-ipod')">
-                <span class="item-name">iPod_Touch.app</span>
+            <div class="start-item" onclick="launchAndClose('win-winamp')">
+                <span class="item-name">Winamp.exe</span>
             </div>
             <hr class="start-divider">
             <div class="start-item" onclick="closeAllAndAlert()">
