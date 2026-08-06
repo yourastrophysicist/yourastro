@@ -96,6 +96,14 @@
                 </svg>
                 <div class="icon-label">CV_LaTeX.pdf</div>
             </div>
+
+            <div class="desktop-icon" onclick="openWindow('win-winamp')">
+                <svg class="icon-svg" viewBox="0 0 32 32">
+                    <rect x="4" y="4" width="24" height="24" fill="#202020" stroke="#000000" stroke-width="2"/>
+                    <path d="M 18 6 L 10 17 L 16 17 L 13 26 L 23 13 L 16 13 Z" fill="#ffcc00" stroke="#ffaa00" stroke-width="1"/>
+                </svg>
+                <div class="icon-label">Winamp.exe</div>
+            </div>
         </div>
 
         <!-- Ambient Cosmic ASCII Header Widget in Desktop -->
@@ -649,11 +657,83 @@ Established platform for intellectual discourse on science and philosophy.
     Research Center for Computing \\
     Jalan Raya Bogor Km. 46 \\
     Bogor 16911, Indonesia \\
-    \texttt{ibnu.nurul.huda@brin.go.id}
+                    \texttt{ibnu.nurul.huda@brin.go.id}
 \end{itemize}
 \end{multicols}
 
 \enddocument</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. WINAMP MEDIA PLAYER WINDOW -->
+        <div class="window winamp-window" id="win-winamp" style="display: none; top: 12%; left: 25%; width: 440px; z-index: 103;">
+            <div class="title-bar winamp-title-bar" onmousedown="dragStart(event, 'win-winamp')">
+                <div class="title-bar-text">WINAMP - Ninajirachi [I Love My Computer]</div>
+                <div class="title-bar-controls">
+                    <button class="tbtn" onclick="minimizeWindow('win-winamp')">_</button>
+                    <button class="tbtn" onclick="maximizeWindow('win-winamp')">口</button>
+                    <button class="tbtn" onclick="closeWindow('win-winamp')">X</button>
+                </div>
+            </div>
+            <div class="window-body winamp-body">
+                <!-- Winamp Main Display Rack -->
+                <div class="winamp-main-rack">
+                    <div class="winamp-lcd">
+                        <div class="lcd-top-row">
+                            <div class="lcd-time" id="winamp-time">00:00</div>
+                            <div class="lcd-kbps">320<span class="kbps-unit">kbps</span> 44<span class="kbps-unit">kHz</span></div>
+                            <div class="lcd-stereo">STEREO</div>
+                        </div>
+                        <div class="lcd-ticker-container">
+                            <div class="lcd-ticker" id="winamp-ticker">1. Ninajirachi - I Love My Computer (3:24) *** WINAMP v2.91 ***</div>
+                        </div>
+                        <canvas id="winamp-spectrum" width="400" height="28"></canvas>
+                    </div>
+
+                    <div class="winamp-controls-row">
+                        <!-- Playback Buttons -->
+                        <div class="winamp-btn-group">
+                            <button class="wa-btn" onclick="winampPrev()" title="Previous Track">|&lt;</button>
+                            <button class="wa-btn wa-play" onclick="winampPlay()" title="Play">&gt;</button>
+                            <button class="wa-btn" onclick="winampPause()" title="Pause">||</button>
+                            <button class="wa-btn" onclick="winampStop()" title="Stop">[]</button>
+                            <button class="wa-btn" onclick="winampNext()" title="Next Track">&gt;|</button>
+                        </div>
+                        
+                        <!-- Volume Control -->
+                        <div class="winamp-sliders">
+                            <div class="wa-slider-wrap">
+                                <span class="wa-label">VOL: <span id="winamp-vol-val">80%</span></span>
+                                <input type="range" id="winamp-vol" min="0" max="100" value="80" oninput="winampSetVolume(this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Track Position Seek Bar -->
+                    <div class="winamp-seek-wrap">
+                        <input type="range" id="winamp-seek" min="0" max="100" value="0" oninput="winampSeek(this.value)">
+                    </div>
+                </div>
+
+                <!-- Winamp Playlist Editor Section -->
+                <div class="winamp-playlist-rack">
+                    <div class="playlist-header">
+                        <span>WINAMP PLAYLIST - Ninajirachi (ILMC)</span>
+                        <a href="https://soundcloud.com/ninajirachi/sets/ilmc" target="_blank" class="wa-sc-link">🌐 SoundCloud Album</a>
+                    </div>
+                    <ul class="playlist-list" id="winamp-playlist-items">
+                        <li class="pl-item active" onclick="winampSelectTrack(0)"><span>1. Ninajirachi - I Love My Computer</span> <span class="pl-dur">3:24</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(1)"><span>2. Ninajirachi - Start Button</span> <span class="pl-dur">2:58</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(2)"><span>3. Ninajirachi - Info Superhighway</span> <span class="pl-dur">3:45</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(3)"><span>4. Ninajirachi - Cyber Dream</span> <span class="pl-dur">4:12</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(4)"><span>5. Ninajirachi - Y2K System Shock</span> <span class="pl-dur">3:15</span></li>
+                        <li class="pl-item" onclick="winampSelectTrack(5)"><span>6. Ninajirachi - Binary Hearts</span> <span class="pl-dur">3:50</span></li>
+                    </ul>
+                    <div class="playlist-footer">
+                        <span id="pl-total-info">6 tracks | 21:24 total time</span>
+                        <button class="wa-mini-btn" onclick="winampPlay()">PLAY ALL</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -718,6 +798,9 @@ Established platform for intellectual discourse on science and philosophy.
             </div>
             <div class="start-item" onclick="launchAndClose('win-pdf')">
                 <span class="item-name">CV_LaTeX.pdf</span>
+            </div>
+            <div class="start-item" onclick="launchAndClose('win-winamp')">
+                <span class="item-name">Winamp.exe</span>
             </div>
             <hr class="start-divider">
             <div class="start-item" onclick="closeAllAndAlert()">
