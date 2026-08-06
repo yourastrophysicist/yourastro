@@ -333,3 +333,25 @@ function initAllanSimulator() {
     // Initial draw run
     updateValuesAndSimulate();
 }
+
+/* PDF Viewer Tab Switcher */
+function switchPdfTab(tabName) {
+    const renderedView = document.getElementById('pdf-rendered-view');
+    const texView = document.getElementById('pdf-tex-view');
+    const btnRendered = document.getElementById('btn-pdf-rendered');
+    const btnTex = document.getElementById('btn-pdf-tex');
+
+    if (!renderedView || !texView) return;
+
+    if (tabName === 'rendered') {
+        renderedView.style.display = 'block';
+        texView.style.display = 'none';
+        btnRendered.classList.add('active-tab');
+        btnTex.classList.remove('active-tab');
+    } else {
+        renderedView.style.display = 'none';
+        texView.style.display = 'block';
+        btnTex.classList.add('active-tab');
+        btnRendered.classList.remove('active-tab');
+    }
+}
