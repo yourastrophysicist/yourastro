@@ -381,6 +381,7 @@ let synthOsc = null;
 let synthGain = null;
 
 let scWidget = null;
+let ipodPlaying = false;
 
 function initSoundCloudWidget() {
     const iframe = document.getElementById('sc-widget');
@@ -388,11 +389,63 @@ function initSoundCloudWidget() {
         try {
             scWidget = SC.Widget(iframe);
             scWidget.bind(SC.Widget.Events.PLAY_PROGRESS, function(data) {
-                winampCurrentTime = Math.floor(data.currentPosition / 1000);
-                updateWinampTimeDisplay();
+                const secs = Math.floor(data.currentPosition / 1000);
+                const mins = String(Math.floor(secs / 60)).padStart(1, '0');
+                const sRem = String(secs % 60).padStart(2, '0');
+                const currEl = document.getElementById('ipod-time-curr');
+                if (currEl) currEl.textContent = `${mins}:${sRem}`;
+                
+                if (data.relativePosition) {
+                    const seekEl = document.getElementById('ipod-seek-bar');
+                    if (seekEl) seekEl.value = Math.floor(data.relativePosition * 100);
+                }
             });
-            scWidget.bind(SC.Widget.Events.FINISH, function() {
-                winampNext();
+        } catch(e){}
+    }
+}
+
+function ipodTogglePlay() {
+    ipodPlaying = !ipodPlaying;
+    const btn = document.getElementById('ipod-play-btn');
+    if (!scWidget) initSoundCloudWidget();
+    if (scWidget) {
+        try { scWidget.toggle(); } catch(e){}
+    }
+    if (ipodPlaying) {
+        if (btn) btn.textContent = '❚❚';
+    } else {
+        if (btn) btn.textContent = '►';
+    }
+}
+
+function ipodNext() {
+    if (!scWidget) initSoundCloudWidget();
+    if (scWidget) {
+        try { scWidget.next(); } catch(e){}
+    }
+}
+
+function ipodPrev() {
+    if (!scWidget) initSoundCloudWidget();
+    if (scWidget) {
+        try { scWidget.prev(); } catch(e){}
+    }
+}
+
+function ipodSetVolume(val) {
+    if (!scWidget) initSoundCloudWidget();
+    if (scWidget) {
+        try { scWidget.setVolume(val); } catch(e){}
+    }
+}
+
+function ipodSeek(val) {
+    if (!scWidget) initSoundCloudWidget();
+    if (scWidget) {
+        try {
+            scWidget.getDuration(function(duration) {
+                const targetMs = (val / 100) * duration;
+                scWidget.seekTo(targetMs);
             });
         } catch(e){}
     }
