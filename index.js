@@ -355,3 +355,223 @@ function switchPdfTab(tabName) {
         btnRendered.classList.remove('active-tab');
     }
 }
+
+/* Winamp v2.91 Media Player Engine */
+const winampPlaylist = [
+    { title: "1. Ninajirachi - I Love My Computer", duration: 204, strDur: "3:24", freq: 440 },
+    { title: "2. Ninajirachi - Start Button", duration: 178, strDur: "2:58", freq: 523 },
+    { title: "3. Ninajirachi - Info Superhighway", duration: 225, strDur: "3:45", freq: 659 },
+    { title: "4. Ninajirachi - Cyber Dream", duration: 252, strDur: "4:12", freq: 587 },
+    { title: "5. Ninajirachi - Y2K System Shock", duration: 195, strDur: "3:15", freq: 698 },
+    { title: "6. Ninajirachi - Binary Hearts", duration: 230, strDur: "3:50", freq: 784 }
+];
+
+let winampCurrentTrack = 0;
+let winampIsPlaying = false;
+let winampIsPaused = false;
+let winampCurrentTime = 0;
+let winampVolume = 0.8;
+let winampTimerInterval = null;
+let winampAnimFrame = null;
+let audioCtx = null;
+let synthOsc = null;
+let synthGain = null;
+
+function winampPlay() {
+    winampIsPlaying = true;
+    winampIsPaused = false;
+    startWinampAudioSynth();
+    startWinampTimer();
+    startWinampVisualizer();
+    updateWinampUI();
+}
+
+function winampPause() {
+    if (!winampIsPlaying) return;
+    winampIsPaused = !winampIsPaused;
+    if (winampIsPaused) {
+        stopWinampAudioSynth();
+    } else {
+        startWinampAudioSynth();
+    }
+    updateWinampUI();
+}
+
+function winampStop() {
+    winampIsPlaying = false;
+    winampIsPaused = false;
+    winampCurrentTime = 0;
+    stopWinampAudioSynth();
+    if (winampTimerInterval) clearInterval(winampTimerInterval);
+    if (winampAnimFrame) cancelAnimationFrame(winampAnimFrame);
+    clearWinampCanvas();
+    updateWinampUI();
+}
+
+function winampNext() {
+    winampCurrentTrack = (winampCurrentTrack + 1) % winampPlaylist.length;
+    winampCurrentTime = 0;
+    if (winampIsPlaying) {
+        stopWinampAudioSynth();
+        startWinampAudioSynth();
+    }
+    updateWinampUI();
+}
+
+function winampPrev() {
+    winampCurrentTrack = (winampCurrentTrack - 1 + winampPlaylist.length) % winampPlaylist.length;
+    winampCurrentTime = 0;
+    if (winampIsPlaying) {
+        stopWinampAudioSynth();
+        startWinampAudioSynth();
+    }
+    updateWinampUI();
+}
+
+function winampSelectTrack(index) {
+    winampCurrentTrack = index;
+    winampCurrentTime = 0;
+    winampPlay();
+}
+
+function winampSetVolume(val) {
+    winampVolume = val / 100;
+    const volEl = document.getElementById('winamp-vol-val');
+    if (volEl) volEl.textContent = val + '%';
+    if (synthGain && audioCtx) {
+        synthGain.gain.setValueAtTime(winampVolume * 0.1, audioCtx.currentTime);
+    }
+}
+
+function winampSeek(val) {
+    const track = winampPlaylist[winampCurrentTrack];
+    winampCurrentTime = Math.floor((val / 100) * track.duration);
+    updateWinampTimeDisplay();
+}
+
+function startWinampTimer() {
+    if (winampTimerInterval) clearInterval(winampTimerInterval);
+    winampTimerInterval = setInterval(() => {
+        if (!winampIsPlaying || winampIsPaused) return;
+        winampCurrentTime++;
+        const track = winampPlaylist[winampCurrentTrack];
+        if (winampCurrentTime >= track.duration) {
+            winampNext();
+        } else {
+            updateWinampTimeDisplay();
+        }
+    }, 1000);
+}
+
+function updateWinampTimeDisplay() {
+    const mins = String(Math.floor(winampCurrentTime / 60)).padStart(2, '0');
+    const secs = String(winampCurrentTime % 60).padStart(2, '0');
+    const timeEl = document.getElementById('winamp-time');
+    if (timeEl) timeEl.textContent = `${mins}:${secs}`;
+    
+    const track = winampPlaylist[winampCurrentTrack];
+    const seekEl = document.getElementById('winamp-seek');
+    if (seekEl) seekEl.value = (winampCurrentTime / track.duration) * 100;
+}
+
+function updateWinampUI() {
+    const track = winampPlaylist[winampCurrentTrack];
+    const tickerEl = document.getElementById('winamp-ticker');
+    if (tickerEl) {
+        const state = winampIsPaused ? '[PAUSED] ' : (winampIsPlaying ? '▶ PLAYING: ' : '■ STOPPED: ');
+        tickerEl.textContent = `${state} ${track.title} (${track.strDur}) *** WINAMP v2.91 ***`;
+    }
+    
+    updateWinampTimeDisplay();
+
+    // Highlight active track in playlist
+    const items = document.querySelectorAll('.pl-item');
+    items.forEach((item, idx) => {
+        if (idx === winampCurrentTrack) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}
+
+function startWinampAudioSynth() {
+    try {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        stopWinampAudioSynth();
+        
+        synthOsc = audioCtx.createOscillator();
+        synthGain = audioCtx.createGain();
+        
+        const track = winampPlaylist[winampCurrentTrack];
+        synthOsc.type = 'triangle';
+        synthOsc.frequency.setValueAtTime(track.freq || 440, audioCtx.currentTime);
+        
+        synthGain.gain.setValueAtTime(winampVolume * 0.08, audioCtx.currentTime);
+        
+        synthOsc.connect(synthGain);
+        synthGain.connect(audioCtx.destination);
+        
+        synthOsc.start();
+    } catch (e) {
+        // Audio synthesis fallback
+    }
+}
+
+function stopWinampAudioSynth() {
+    if (synthOsc) {
+        try { synthOsc.stop(); } catch(e){}
+        synthOsc = null;
+    }
+}
+
+function startWinampVisualizer() {
+    const canvas = document.getElementById('winamp-spectrum');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    function draw() {
+        if (!winampIsPlaying || winampIsPaused) {
+            clearWinampCanvas();
+            return;
+        }
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        const numBars = 22;
+        const barWidth = canvas.width / numBars;
+        
+        for (let i = 0; i < numBars; i++) {
+            const barHeight = Math.floor(Math.random() * (canvas.height - 4)) + 4;
+            const x = i * barWidth;
+            const y = canvas.height - barHeight;
+            
+            const grad = ctx.createLinearGradient(0, canvas.height, 0, 0);
+            grad.addColorStop(0, '#00ff00');
+            grad.addColorStop(0.65, '#ffff00');
+            grad.addColorStop(1, '#ff0000');
+            
+            ctx.fillStyle = grad;
+            ctx.fillRect(x + 1, y, barWidth - 2, barHeight);
+        }
+        
+        winampAnimFrame = requestAnimationFrame(draw);
+    }
+    
+    if (winampAnimFrame) cancelAnimationFrame(winampAnimFrame);
+    draw();
+}
+
+function clearWinampCanvas() {
+    const canvas = document.getElementById('winamp-spectrum');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
