@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Allan Deviation Simulator Initialization
     initAllanSimulator();
+
+    // 3. Initialize SoundCloud API Widget
+    setTimeout(initSoundCloudWidget, 1000);
 });
 
 /* Window Dragging Handlers */
@@ -377,9 +380,31 @@ let audioCtx = null;
 let synthOsc = null;
 let synthGain = null;
 
+let scWidget = null;
+
+function initSoundCloudWidget() {
+    const iframe = document.getElementById('sc-widget');
+    if (iframe && typeof SC !== 'undefined') {
+        try {
+            scWidget = SC.Widget(iframe);
+            scWidget.bind(SC.Widget.Events.PLAY_PROGRESS, function(data) {
+                winampCurrentTime = Math.floor(data.currentPosition / 1000);
+                updateWinampTimeDisplay();
+            });
+            scWidget.bind(SC.Widget.Events.FINISH, function() {
+                winampNext();
+            });
+        } catch(e){}
+    }
+}
+
 function winampPlay() {
     winampIsPlaying = true;
     winampIsPaused = false;
+    if (!scWidget) initSoundCloudWidget();
+    if (scWidget) {
+        try { scWidget.play(); } catch(e){}
+    }
     startWinampAudioSynth();
     startWinampTimer();
     startWinampVisualizer();
@@ -389,6 +414,9 @@ function winampPlay() {
 function winampPause() {
     if (!winampIsPlaying) return;
     winampIsPaused = !winampIsPaused;
+    if (scWidget) {
+        try { scWidget.toggle(); } catch(e){}
+    }
     if (winampIsPaused) {
         stopWinampAudioSynth();
     } else {
@@ -401,6 +429,9 @@ function winampStop() {
     winampIsPlaying = false;
     winampIsPaused = false;
     winampCurrentTime = 0;
+    if (scWidget) {
+        try { scWidget.pause(); scWidget.seekTo(0); } catch(e){}
+    }
     stopWinampAudioSynth();
     if (winampTimerInterval) clearInterval(winampTimerInterval);
     if (winampAnimFrame) cancelAnimationFrame(winampAnimFrame);
@@ -411,6 +442,9 @@ function winampStop() {
 function winampNext() {
     winampCurrentTrack = (winampCurrentTrack + 1) % winampPlaylist.length;
     winampCurrentTime = 0;
+    if (scWidget) {
+        try { scWidget.next(); } catch(e){}
+    }
     if (winampIsPlaying) {
         stopWinampAudioSynth();
         startWinampAudioSynth();
@@ -421,6 +455,9 @@ function winampNext() {
 function winampPrev() {
     winampCurrentTrack = (winampCurrentTrack - 1 + winampPlaylist.length) % winampPlaylist.length;
     winampCurrentTime = 0;
+    if (scWidget) {
+        try { scWidget.prev(); } catch(e){}
+    }
     if (winampIsPlaying) {
         stopWinampAudioSynth();
         startWinampAudioSynth();
@@ -431,6 +468,9 @@ function winampPrev() {
 function winampSelectTrack(index) {
     winampCurrentTrack = index;
     winampCurrentTime = 0;
+    if (scWidget) {
+        try { scWidget.skip(index); } catch(e){}
+    }
     winampPlay();
 }
 
@@ -438,8 +478,8 @@ function winampSetVolume(val) {
     winampVolume = val / 100;
     const volEl = document.getElementById('winamp-vol-val');
     if (volEl) volEl.textContent = val + '%';
-    if (synthGain && audioCtx) {
-        synthGain.gain.setValueAtTime(winampVolume * 0.1, audioCtx.currentTime);
+    if (scWidget) {
+        try { scWidget.setVolume(val); } catch(e){}
     }
 }
 
