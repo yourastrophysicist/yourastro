@@ -84,7 +84,15 @@
                     <line x1="10" y1="18" x2="22" y2="18" stroke="#202030" stroke-width="2"/>
                     <line x1="10" y1="22" x2="16" y2="22" stroke="#202030" stroke-width="2"/>
                 </svg>
-                <div class="icon-label">Resume.txt</div>
+                <div class="icon-label">hi.txt</div>
+            </div>
+
+            <div class="desktop-icon" onclick="openWindow('win-values')">
+                <svg class="icon-svg" viewBox="0 0 32 32">
+                    <rect x="6" y="4" width="20" height="24" fill="#e6f7ff" stroke="#000000" stroke-width="2"/>
+                    <polygon points="16,8 18.5,13 24,14 20,18 21,23.5 16,21 11,23.5 12,18 8,14 13.5,13" fill="#ffcc00" stroke="#000000" stroke-width="1"/>
+                </svg>
+                <div class="icon-label">Values.txt</div>
             </div>
 
             <div class="desktop-icon" onclick="openWindow('win-pdf')">
@@ -155,8 +163,8 @@
             </div>
         </div>
 
-        <!-- 2. ABOUT ME TEXT READER WINDOW (Bio, Dandelion picture, advocacy) -->
-        <div class="window" id="win-about" style="display: none; top: 15%; left: 35%; width: 480px; z-index: 100;">
+        <!-- 2. ABOUT ME TEXT READER WINDOW -->
+        <div class="window" id="win-about" style="display: none; top: 15%; left: 35%; width: 500px; z-index: 100;">
             <div class="title-bar" onmousedown="dragStart(event, 'win-about')">
                 <div class="title-bar-text">AboutMe.txt - Notepad</div>
                 <div class="title-bar-controls">
@@ -172,16 +180,19 @@
                 <div class="notepad-textarea">
                     <img src="img/jessica-dandelion.jpg" alt="Jessica in dandelion field" class="notepad-image">
                     <p class="notepad-text">
-                        I am currently pursuing my M.Sc. in Astrophysics and Cosmology at Universita degli Studi di Padova (Italy). I previously graduated with a B.Sc. in Physics from Universitas Gadjah Mada (Indonesia), specializing in Theoretical and Computational Physics.
+                        Welcome to my personal digital space! I am Jessica Syafaq Muthmaina, an astrophysicist and researcher currently pursuing my Master of Science (M.Sc.) in Astrophysics and Cosmology at Universita degli Studi di Padova (UNIPD), Padova, Italy.
                     </p>
                     <p class="notepad-text">
-                        Upcoming Traineeship - Erasmus+ candidate at IRAM Grenoble (France) within the Superconducting Devices Group, working with Dr. Eduard Driessen on superconducting detectors and radio astronomy instrumentation receiver systems.
+                        I previously earned my Bachelor of Science (B.Sc.) in Physics from Universitas Gadjah Mada (UGM) in Yogyakarta, Indonesia, concentrating on theoretical, computational physics, and observational astronomy.
                     </p>
                     <p class="notepad-text">
-                        Lab Experience - Completed High Energy Instrumentation Laboratory with a grade of 28/30.
+                        My scientific research focuses on observational astrophysics, quasars, active galactic nuclei (AGN), positional stability analysis using VLBI time series, and frequency stability metrics via Allan standard deviation.
                     </p>
                     <p class="notepad-text">
-                        Social Advocacy - Active in intersectional advocacy and community building through collective actions in Garut with Sadar Setara and Ruang Postulat.
+                        I love my computer! I use it for astronomical data processing, reduction, spectral analysis, LaTeX scientific typesetting, and Zettelkasten research synthesis in Obsidian.
+                    </p>
+                    <p class="notepad-text">
+                        Beyond physics, I am deeply engaged in community building, open knowledge sharing, and intersectional advocacy with Sadar Setara and Ruang Postulat in Garut, Indonesia.
                     </p>
                 </div>
             </div>
@@ -311,7 +322,7 @@
         <!-- 6. CURRICULUM VITAE WINDOW (CV Display) -->
         <div class="window" id="win-cv" style="display: none; top: 35%; left: 30%; width: 450px; z-index: 96;">
             <div class="title-bar" onmousedown="dragStart(event, 'win-cv')">
-                <div class="title-bar-text">Resume.txt - Notepad</div>
+                <div class="title-bar-text">hi.txt - Notepad</div>
                 <div class="title-bar-controls">
                     <button class="tbtn" onclick="minimizeWindow('win-cv')">_</button>
                     <button class="tbtn" onclick="maximizeWindow('win-cv')">口</button>
@@ -666,6 +677,48 @@ Established platform for intellectual discourse on science and philosophy.
             </div>
         </div>
 
+        <!-- 7. CORE VALUES WINDOW -->
+        <div class="window" id="win-values" style="display: none; top: 18%; left: 28%; width: 480px; z-index: 102;">
+            <div class="title-bar" onmousedown="dragStart(event, 'win-values')">
+                <div class="title-bar-text">Values.txt - Notepad</div>
+                <div class="title-bar-controls">
+                    <button class="tbtn" onclick="minimizeWindow('win-values')">_</button>
+                    <button class="tbtn" onclick="maximizeWindow('win-values')">口</button>
+                    <button class="tbtn" onclick="closeWindow('win-values')">X</button>
+                </div>
+            </div>
+            <div class="window-body text-body">
+                <div class="notepad-menu">
+                    <span>File</span><span>Edit</span><span>Search</span><span>Help</span>
+                </div>
+                <div class="notepad-textarea">
+                    <h2 class="cv-name" style="font-size: 16px;">Core Values & Scientific Vision</h2>
+                    <p class="cv-contact">Jessica Syafaq Muthmaina | Observational Astrophysics</p>
+                    <hr class="cv-divider">
+                    
+                    <h3 class="cv-section-title">1. Scientific Rigor & Empirical Curiosity</h3>
+                    <p class="notepad-text">
+                        A commitment to thorough observational data analysis, precise error quantification using methods like Allan variance, and seeking empirical truth in cosmic structures.
+                    </p>
+
+                    <h3 class="cv-section-title">2. Open Science & Knowledge Sharing</h3>
+                    <p class="notepad-text">
+                        Belief in accessible research, open-source computational tools, and communicating complex astronomical discoveries engagingly to public audiences.
+                    </p>
+
+                    <h3 class="cv-section-title">3. Intersectional Community & Advocacy</h3>
+                    <p class="notepad-text">
+                        Fostering inclusive academic spaces and active grassroots community advocacy through Sadar Setara and Ruang Postulat.
+                    </p>
+
+                    <h3 class="cv-section-title">4. Global Collaboration & Cultural Exchange</h3>
+                    <p class="notepad-text">
+                        Bridging academic perspectives between Indonesia and Europe, connecting UGM, UNIPD, and international research facilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- 8. WINAMP MEDIA PLAYER WINDOW -->
         <div class="window winamp-window" id="win-winamp" style="display: none; top: 10%; left: 25%; width: 450px; z-index: 103;">
             <div class="title-bar winamp-title-bar" onmousedown="dragStart(event, 'win-winamp')">
@@ -803,7 +856,10 @@ Established platform for intellectual discourse on science and philosophy.
                 <span class="item-name">Outreach.url</span>
             </div>
             <div class="start-item" onclick="launchAndClose('win-cv')">
-                <span class="item-name">Resume.txt</span>
+                <span class="item-name">hi.txt</span>
+            </div>
+            <div class="start-item" onclick="launchAndClose('win-values')">
+                <span class="item-name">Values.txt</span>
             </div>
             <div class="start-item" onclick="launchAndClose('win-pdf')">
                 <span class="item-name">CV_LaTeX.pdf</span>
