@@ -1637,14 +1637,33 @@ body {
     font-weight: 700;
 }
 
+/* Paper Figure Container Styling */
+.paper-figure-container {
+    background: #ffffff;
+    border: 1px solid #d0d0d8;
+    padding: 10px;
+    margin: 12px 0 16px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 4px;
+}
+
+.paper-figure-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+}
+
 .figure-caption {
-    font-size: 10.5px;
-    color: #444444;
-    line-height: 1.4;
-    margin-top: 8px;
-    padding: 6px 8px;
-    border-left: 3px solid #8b0000;
-    background: #fafafa;
+    font-size: 11px;
+    color: #333333;
+    line-height: 1.45;
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-left: 3.5px solid #8b0000;
+    background: #fcfcfd;
+    border-radius: 0 4px 4px 0;
 }
 
 
