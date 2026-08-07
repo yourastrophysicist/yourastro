@@ -217,13 +217,38 @@
                     <span class="toolbar-font-name">MS Sans Serif</span>
                 </div>
                 <div class="document-content">
-                    <div class="research-hero">
-                        <img src="img/jessica-binary-camera.jpg" alt="Jessica binary camera composition" class="research-banner">
-                    </div>
-                    
                     <h2 class="doc-title">Positional Stability Analysis of Quasar 4C31.61 Using VLBI Time Series and Allan Standard Deviation</h2>
-                    <p class="doc-meta">Journal of Physics Conference Series | arXiv 2401.12325</p>
+                    <p class="doc-meta">Journal of Physics Conference Series | arXiv:2401.12325</p>
                     
+                    <div class="research-hero-figure">
+                        <div class="figure-title-bar">
+                            <span>Fig 1. Allan Standard Deviation σ_y(τ) — Quasar 4C31.61 (arXiv:2401.12325)</span>
+                            <span class="fig-badge">Interactive Simulation</span>
+                        </div>
+                        
+                        <div class="figure-canvas-container">
+                            <canvas id="doc-allan-canvas" width="480" height="220"></canvas>
+                        </div>
+
+                        <div class="figure-controls-panel">
+                            <div class="fig-control-group">
+                                <label>Sampling interval τ: <strong id="doc-lbl-tau">50 days</strong></label>
+                                <input type="range" id="doc-input-tau" min="1" max="500" step="5" value="50">
+                            </div>
+                            <div class="fig-control-group">
+                                <label>VLBI Baseline distance b: <strong id="doc-lbl-baseline">8000 km</strong></label>
+                                <input type="range" id="doc-input-baseline" min="1000" max="12000" step="250" value="8000">
+                            </div>
+                            <div class="fig-results-group">
+                                <span>Computed σ_y(τ)</span>
+                                <strong id="doc-lbl-result" class="fig-highlight-val">0.042 mas</strong>
+                            </div>
+                        </div>
+                        <div class="figure-caption">
+                            <em>Fig. 1. — Empirical Allan deviation σ_y(τ) curve derived from VLBI position time series of Quasar 4C31.61 (2201+315). The curve demonstrates the transition from high-frequency white noise (slope -1/2) to long-term random walk positional drift (slope +1/2), achieving minimum positional uncertainty at optimal integration sampling τ ≈ 45–60 days.</em>
+                        </div>
+                    </div>
+
                     <p class="doc-paragraph">
                         Quasar 4C31.61 (2201+315) is an essential celestial reference point in the International Celestial Reference Frame (ICRF). To evaluate its positional stability, we analyze multi-year VLBI position time series using the Allan standard deviation method.
                     </p>
