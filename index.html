@@ -201,56 +201,123 @@
         </div>
 
         <!-- 3. FEATURED RESEARCH DOCUMENT (Quasar 4C31.61 & Allan Standard Deviation Analysis) -->
-        <div class="window" id="win-research" style="display: none; top: 20%; left: 5%; width: 580px; z-index: 99;">
+        <div class="window" id="win-research" style="display: none; top: 12%; left: 10%; width: 660px; height: 560px; z-index: 99;">
             <div class="title-bar" onmousedown="dragStart(event, 'win-research')">
-                <div class="title-bar-text">Quasar_Research.doc - WordPad</div>
+                <div class="title-bar-text">Quasar_Research.doc - WordPad [arXiv:2401.12325]</div>
                 <div class="title-bar-controls">
                     <button class="tbtn" onclick="minimizeWindow('win-research')">_</button>
                     <button class="tbtn" onclick="maximizeWindow('win-research')">口</button>
                     <button class="tbtn" onclick="closeWindow('win-research')">X</button>
                 </div>
             </div>
-            <div class="window-body">
+            <div class="window-body" style="display: flex; flex-direction: column; height: calc(100% - 24px);">
                 <div class="wordpad-toolbar">
                     <span class="toolbar-btn font-bold">B</span>
                     <span class="toolbar-btn font-italic">I</span>
                     <span class="toolbar-btn font-underline">U</span>
                     <span class="toolbar-divider"></span>
                     <span class="toolbar-font-name">MS Sans Serif</span>
+                    <span class="toolbar-divider"></span>
+                    <span style="font-size: 11px; color: #444;">Journal of Physics: Conference Series 2773 (2024) 012007</span>
                 </div>
-                <div class="document-content">
-                    <h2 class="doc-title">Implementation of Allan Standard Deviation Technique in Stability Analysis of Quasar 4C31.61</h2>
-                    <p class="doc-meta">Journal of Physics Conference Series | arXiv:2401.12325 | IOPScience DOI: 10.1088/1742-6596/2773/1/012007</p>
+                <div class="document-content" style="flex: 1; max-height: none;">
+                    <h2 class="doc-title" style="font-size: 16px; color: #000080;">Implementation of Allan Standard Deviation Technique in Stability Analysis of 4C31.61 Quasar Position</h2>
                     
-                    <div class="paper-figure-container">
-                        <img src="img/quasar-allan-sd-figure.png" alt="Figure 1: Positional Stability Analysis of Quasar 4C31.61 Using Allan Standard Deviation" class="paper-figure-img">
-                        <div class="figure-caption">
-                            <em><strong>Figure 1.</strong> — Allan Standard Deviation $\sigma_y(\tau)$ positional stability analysis of Quasar 4C31.61 (2201+315) from multi-year VLBI position time series. Blue dashed curve represents high-frequency white noise ($\propto \tau^{-1/2}$), red dotted line shows long-term random walk positional drift ($\propto \tau^{+1/2}$), and the dark red curve indicates the total empirical model with optimal stability minimum $\sigma_{y,min} \approx 0.042\text{ mas}$ at $\tau \approx 48\text{ days}$.</em>
-                        </div>
+                    <p class="doc-meta" style="font-size: 11px; color: #222; margin-bottom: 12px;">
+                        <strong>Authors:</strong> Jessica Syafaq Muthmaina<sup>1</sup>, Ibnu Nurul Huda<sup>2</sup>, Dwi Satya Palupi<sup>1</sup><br>
+                        <em><sup>1</sup>Department of Physics, Faculty of Mathematics and Natural Sciences, Universitas Gadjah Mada, Yogyakarta, Indonesia<br>
+                        <sup>2</sup>Research Center for Computation, National Research and Innovation Agency (BRIN), Bogor, Indonesia</em><br>
+                        <strong>Publication:</strong> IOPScience Journal of Physics Conference Series | <strong>arXiv:</strong> <a href="https://arxiv.org/abs/2401.12325" target="_blank">2401.12325 [astro-ph.GA]</a> | <strong>DOI:</strong> <a href="https://iopscience.iop.org/article/10.1088/1742-6596/2773/1/012007/meta" target="_blank">10.1088/1742-6596/2773/1/012007</a>
+                    </p>
+
+                    <div class="doc-formula-box" style="background: #f4f6fb; border-left: 4px solid #000080; padding: 10px 14px; margin-bottom: 14px;">
+                        <p class="formula-label" style="color: #000080; font-weight: bold;">Abstract</p>
+                        <p class="doc-paragraph" style="margin-bottom: 0; font-style: italic; font-size: 11.5px;">
+                            The International Celestial Reference Frame (ICRF) plays an important role in astronomy and geodesy. The realization of ICRF is based on the position of thousands of quasars observed using the Very-Long Baseline Interferometry (VLBI) technique. Better quality of ICRF is achieved when the position of the quasars is stable. In this study, we aim to analyze the stability of one of the quasars in ICRF called 4C31.61 (2201+315). We performed VLBI data analysis by using Vienna VLBI and Satellite Software (VieVS) to get the position of the quasar. We also used the data of the quasar's position from the Paris Observatory Geodetic VLBI Center. We examined the stability of the quasar position by using the Allan standard deviation technique. We found that the quasar 4C31.61 (2201+315) has a stable position with the dominance of white noise across the majority of time scales.
+                        </p>
                     </div>
 
+                    <h3 style="font-size: 13px; color: #8b0000; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-top: 15px;">1. Introduction & ICRF Realization</h3>
                     <p class="doc-paragraph">
-                        Quasar 4C31.61 (2201+315) is an essential celestial reference source in the International Celestial Reference Frame (ICRF). To evaluate its long-term positional stability and suitability as a celestial grid anchor, we analyze multi-year Very Long Baseline Interferometry (VLBI) time series using the Allan standard deviation ($\sigma_y(\tau)$) method.
+                        Very Long Baseline Interferometry (VLBI) is an observational technique that uses widely separated radio telescopes to observe astronomical radio sources simultaneously. VLBI is the primary technique for realizing the International Celestial Reference Frame (ICRF-3) through high-precision positional monitoring of extragalactic radio sources. Positional stability is an essential prerequisite for reference quasars to prevent distortion in celestial reference frames.
+                    </p>
+
+                    <h3 style="font-size: 13px; color: #8b0000; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-top: 15px;">2. Data & Overlapping Allan Standard Deviation Formulation</h3>
+                    <p class="doc-paragraph">
+                        We analyzed 33 years of VLBI observation data (1990–2023) comprising 6,342 sessions. Quasar 4C31.61 positions in Right Ascension ($\alpha$) and Declination ($\delta$) were derived using Vienna VLBI Software (VieVS) with ICRF-3 and ITRF-2020 reference frames, and compared against Paris Observatory Geodetic VLBI Center data ($\alpha = 330.8123990589822^\circ$, $\delta = 31.7606305185240^\circ$).
                     </p>
 
                     <div class="doc-formula-box">
-                        <p class="formula-label">Allan Variance Formulation</p>
+                        <p class="formula-label">Overlapping Allan Standard Deviation $\sigma^2(\tau)$</p>
                         <div class="formula-render">
-                            $$ \sigma_y^2(\tau) = \frac{1}{2(N-1)} \sum_{i=1}^{N-1} (\bar{y}_{i+1} - \bar{y}_i)^2 $$
+                            $$ \sigma^2(\tau) = \frac{1}{M-2m+1} \sum^{M-2m+1}_{j=1}\frac{1}{2}\left(\frac{1}{m}\sum^{j+m-1}_{i=j}(\bar{y}_{i+m}-\bar{y}_i)\right)^2 $$
                         </div>
+                        <p style="font-size: 10px; color: #555; text-align: center; margin-top: 4px;">
+                            where $M$ is the number of windows, $\tau = m\tau_0$ is the time scale ($\tau_0$ sampling interval), and $\bar{y}$ is the sample mean over interval $\tau$.
+                        </p>
                     </div>
 
                     <p class="doc-paragraph">
-                        This time-domain stability technique enables the distinction between high-frequency white noise processes (attributable to atmospheric turbulence and instrumental effects) and low-frequency random walk drifts induced by astrophysical source structure variations and core-jet interaction at microarcsecond scales.
+                        Noise classification is determined by the slope $S$ in logarithmic Allan variance plots:
+                        <strong>White Noise (Stable):</strong> $S < -0.25$; 
+                        <strong>Flicker Noise:</strong> $-0.25 \le S \le 0.25$; 
+                        <strong>Random Walk (Unstable):</strong> $S > 0.25$.
+                    </p>
+
+                    <h3 style="font-size: 13px; color: #8b0000; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-top: 15px;">3. Paper Figures & Observational Results</h3>
+                    
+                    <!-- Paper Figure 1: Relative Position Comparison -->
+                    <div class="paper-figure-container">
+                        <img src="img/quasar-position-comparison.png" alt="Figure 1: Comparison of 4C31.61 relative position given by VieVS and Paris Observatory" class="paper-figure-img">
+                        <div class="figure-caption">
+                            <em><strong>Figure 1.</strong> — Comparison of Quasar 4C31.61 relative position given by our VLBI analysis (VieVS, red dots) and Paris Observatory Geodetic VLBI Center (Paris, blue dots) with respect to reference position ($\alpha = 330.8123990589822^\circ$, $\delta = 31.7606305185240^\circ$).</em>
+                        </div>
+                    </div>
+
+                    <!-- Paper Figure 2: Allan Deviation Plots Grid -->
+                    <div class="paper-figure-container">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px;">
+                            <div>
+                                <img src="img/vievs-allan-ra.png" alt="VieVS Allan Deviation RA" style="width: 100%; border: 1px solid #ccc; border-radius: 2px;">
+                                <p style="font-size: 9.5px; text-align: center; color: #444; margin-top: 2px;">(a) VieVS — $\alpha \cos \delta$</p>
+                            </div>
+                            <div>
+                                <img src="img/vievs-allan-dec.png" alt="VieVS Allan Deviation Dec" style="width: 100%; border: 1px solid #ccc; border-radius: 2px;">
+                                <p style="font-size: 9.5px; text-align: center; color: #444; margin-top: 2px;">(b) VieVS — $\delta$</p>
+                            </div>
+                            <div>
+                                <img src="img/paris-allan-ra.png" alt="Paris Allan Deviation RA" style="width: 100%; border: 1px solid #ccc; border-radius: 2px;">
+                                <p style="font-size: 9.5px; text-align: center; color: #444; margin-top: 2px;">(c) Paris Observatory — $\alpha \cos \delta$</p>
+                            </div>
+                            <div>
+                                <img src="img/paris-allan-dec.png" alt="Paris Allan Deviation Dec" style="width: 100%; border: 1px solid #ccc; border-radius: 2px;">
+                                <p style="font-size: 9.5px; text-align: center; color: #444; margin-top: 2px;">(d) Paris Observatory — $\delta$</p>
+                            </div>
+                        </div>
+                        <div class="figure-caption">
+                            <em><strong>Figure 2.</strong> — Allan Deviation $\sigma(\tau)$ plots of Quasar 4C31.61. Top row: VieVS VLBI analysis. Bottom row: Paris Observatory Geodetic VLBI Center data. Left: Right Ascension ($\alpha \cos \delta$). Right: Declination ($\delta$).</em>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 13px; color: #8b0000; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-top: 15px;">4. Discussion & Conclusions</h3>
+                    <p class="doc-paragraph">
+                        The Allan deviation plots demonstrate that <strong>white noise dominates across short time scales</strong>, confirming that Quasar 4C31.61 (2201+315) maintains high positional stability suitable for ICRF reference frame realization. For long time scales, random walk noise is observed, which can be attributed to plasma jet ejections from the quasar nucleus or potential Binary Black Hole (BBH) orbital motions.
                     </p>
 
                     <fieldset class="sys-fieldset" style="margin-top: 15px;">
-                        <legend>Publication Links & Dataset Provenance</legend>
-                        <ul class="tech-list">
-                            <li><strong>arXiv Preprint:</strong> <a href="https://arxiv.org/abs/2401.12325" target="_blank">arXiv:2401.12325 [astro-ph.GA]</a></li>
-                            <li><strong>Publisher DOI:</strong> <a href="https://iopscience.iop.org/article/10.1088/1742-6596/2773/1/012007/meta" target="_blank">IOPScience Journal of Physics Conference Series</a></li>
-                            <li><strong>Primary Research Lead:</strong> Jessica Syafaq Muthmaina (Universitas Gadjah Mada & UNIPD)</li>
-                        </ul>
+                        <legend>Citation & Paper References</legend>
+                        <p style="font-size: 11px; margin-bottom: 4px;"><strong>BibTeX Citation:</strong></p>
+                        <pre style="font-family: monospace; font-size: 9.5px; background: #eee; padding: 6px; border: 1px solid #ccc; overflow-x: auto;">
+@article{muthmaina2024allan,
+  title={Implementation of Allan Standard Deviation Technique in Stability Analysis of 4C31.61 Quasar Position},
+  author={Muthmaina, Jessica Syafaq and Huda, Ibnu Nurul and Palupi, Dwi Satya},
+  journal={Journal of Physics: Conference Series},
+  volume={2773},
+  pages={012007},
+  year={2024},
+  publisher={IOP Publishing},
+  doi={10.1088/1742-6596/2773/1/012007}
+}</pre>
                     </fieldset>
                 </div>
             </div>
