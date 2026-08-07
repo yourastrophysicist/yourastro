@@ -47,13 +47,22 @@ document.addEventListener("DOMContentLoaded", () => {
 /* Lock Screen Handler */
 function unlockDesktop() {
     const lockScreen = document.getElementById('lock-screen');
-    if (lockScreen) {
+    if (lockScreen && lockScreen.style.display !== 'none') {
         lockScreen.classList.add('unlock-fade');
         setTimeout(() => {
             lockScreen.style.display = 'none';
         }, 400);
     }
 }
+
+document.addEventListener('keydown', (e) => {
+    const lockScreen = document.getElementById('lock-screen');
+    if (lockScreen && lockScreen.style.display !== 'none') {
+        if (e.key === 'Enter' || e.key === 'Escape' || (e.ctrlKey && e.altKey && (e.key === 'Delete' || e.key === 'Del'))) {
+            unlockDesktop();
+        }
+    }
+});
 
 function updateLockClock() {
     const el = document.getElementById('lock-screen-clock');
