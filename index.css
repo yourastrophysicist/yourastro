@@ -1689,4 +1689,171 @@ mjx-container[jax="CHTML"] {
     border-radius: 0 4px 4px 0;
 }
 
+/* Windows Classic Y2K Lock Screen Overlay */
+.lock-screen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #008080 0%, #004d4d 70%, #002b2b 100%);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.lock-screen-overlay.unlock-fade {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.lock-screen-box {
+    width: 480px;
+    background: var(--win-gray);
+    border-top: 2px solid var(--win-light);
+    border-left: 2px solid var(--win-light);
+    border-right: 2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
+    box-shadow: 8px 8px 24px rgba(0,0,0,0.6);
+    font-family: var(--font-sans);
+}
+
+.lock-screen-header {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    padding: 8px 12px;
+    color: #ffffff;
+}
+
+.lock-screen-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.lock-logo-svg {
+    width: 28px;
+    height: 28px;
+}
+
+.lock-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.brand-sub {
+    font-size: 10px;
+    color: #00ffff;
+    letter-spacing: 0.5px;
+}
+
+.lock-screen-body {
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    background: var(--win-gray);
+}
+
+.lock-user-avatar {
+    width: 90px;
+    height: 90px;
+    border-top: 2px solid var(--win-darkest);
+    border-left: 2px solid var(--win-darkest);
+    border-right: 2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    background: #000000;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.lock-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lock-form-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lock-welcome-txt {
+    font-size: 12px;
+    color: var(--win-darkest);
+    margin: 0;
+}
+
+.lock-instruction-txt {
+    font-size: 11px;
+    color: #444444;
+    margin: 0 0 4px 0;
+}
+
+.lock-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lock-input-group label {
+    width: 75px;
+    font-size: 11px;
+    color: var(--win-darkest);
+}
+
+.lock-input {
+    flex: 1;
+    font-size: 11px;
+    padding: 3px 6px;
+    border-top: 2px solid var(--win-darkest);
+    border-left: 2px solid var(--win-darkest);
+    border-right: 2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    background: var(--win-light);
+    font-family: var(--font-sans);
+}
+
+.lock-input[readonly] {
+    background: #e4e4e4;
+    color: #333;
+}
+
+.lock-btn-row {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.lock-btn {
+    min-width: 65px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-family: var(--font-sans);
+    cursor: pointer;
+}
+
+.lock-screen-footer {
+    background: #dfdfdf;
+    border-top: 1px solid var(--win-dark-gray);
+    padding: 6px 12px;
+    font-size: 10px;
+    color: #555555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
