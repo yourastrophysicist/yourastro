@@ -53,18 +53,7 @@
                 <div class="icon-label">Quasar.doc</div>
             </div>
 
-            <div class="desktop-icon" onclick="openWindow('win-calc')">
-                <svg class="icon-svg" viewBox="0 0 32 32">
-                    <rect x="6" y="4" width="20" height="24" fill="#dfdfdf" stroke="#000000" stroke-width="2"/>
-                    <rect x="8" y="6" width="16" height="6" fill="#a0b0a0" stroke="#000000" stroke-width="2"/>
-                    <rect x="9" y="14" width="4" height="3" fill="#808080"/>
-                    <rect x="15" y="14" width="4" height="3" fill="#808080"/>
-                    <rect x="9" y="19" width="4" height="3" fill="#808080"/>
-                    <rect x="15" y="19" width="4" height="3" fill="#808080"/>
-                    <rect x="9" y="24" width="10" height="3" fill="#808080"/>
-                </svg>
-                <div class="icon-label">AllanDev.exe</div>
-            </div>
+
 
             <div class="desktop-icon" onclick="openWindow('win-media')">
                 <svg class="icon-svg" viewBox="0 0 32 32">
@@ -198,8 +187,8 @@
             </div>
         </div>
 
-        <!-- 3. FEATURED RESEARCH DOCUMENT (VLBI and quasar stability analysis) -->
-        <div class="window" id="win-research" style="display: none; top: 20%; left: 5%; width: 550px; z-index: 99;">
+        <!-- 3. FEATURED RESEARCH DOCUMENT (Quasar 4C31.61 & Allan Standard Deviation Analysis) -->
+        <div class="window" id="win-research" style="display: none; top: 20%; left: 5%; width: 580px; z-index: 99;">
             <div class="title-bar" onmousedown="dragStart(event, 'win-research')">
                 <div class="title-bar-text">Quasar_Research.doc - WordPad</div>
                 <div class="title-bar-controls">
@@ -217,92 +206,39 @@
                     <span class="toolbar-font-name">MS Sans Serif</span>
                 </div>
                 <div class="document-content">
-                    <h2 class="doc-title">Positional Stability Analysis of Quasar 4C31.61 Using VLBI Time Series and Allan Standard Deviation</h2>
-                    <p class="doc-meta">Journal of Physics Conference Series | arXiv:2401.12325</p>
+                    <h2 class="doc-title">Implementation of Allan Standard Deviation Technique in Stability Analysis of Quasar 4C31.61</h2>
+                    <p class="doc-meta">Journal of Physics Conference Series | arXiv:2401.12325 | IOPScience DOI: 10.1088/1742-6596/2773/1/012007</p>
                     
-                    <div class="research-hero-figure">
-                        <div class="figure-title-bar">
-                            <span>Fig 1. Allan Standard Deviation σ_y(τ) — Quasar 4C31.61 (arXiv:2401.12325)</span>
-                            <span class="fig-badge">Interactive Simulation</span>
-                        </div>
-                        
-                        <div class="figure-canvas-container">
-                            <canvas id="doc-allan-canvas" width="480" height="220"></canvas>
-                        </div>
-
-                        <div class="figure-controls-panel">
-                            <div class="fig-control-group">
-                                <label>Sampling interval τ: <strong id="doc-lbl-tau">50 days</strong></label>
-                                <input type="range" id="doc-input-tau" min="1" max="500" step="5" value="50">
-                            </div>
-                            <div class="fig-control-group">
-                                <label>VLBI Baseline distance b: <strong id="doc-lbl-baseline">8000 km</strong></label>
-                                <input type="range" id="doc-input-baseline" min="1000" max="12000" step="250" value="8000">
-                            </div>
-                            <div class="fig-results-group">
-                                <span>Computed σ_y(τ)</span>
-                                <strong id="doc-lbl-result" class="fig-highlight-val">0.042 mas</strong>
-                            </div>
-                        </div>
+                    <div class="paper-figure-container">
+                        <img src="img/quasar-allan-sd-figure.png" alt="Figure 1: Positional Stability Analysis of Quasar 4C31.61 Using Allan Standard Deviation" class="paper-figure-img">
                         <div class="figure-caption">
-                            <em>Fig. 1. — Empirical Allan deviation σ_y(τ) curve derived from VLBI position time series of Quasar 4C31.61 (2201+315). The curve demonstrates the transition from high-frequency white noise (slope -1/2) to long-term random walk positional drift (slope +1/2), achieving minimum positional uncertainty at optimal integration sampling τ ≈ 45–60 days.</em>
+                            <em><strong>Figure 1.</strong> — Allan Standard Deviation $\sigma_y(\tau)$ positional stability analysis of Quasar 4C31.61 (2201+315) from multi-year VLBI position time series. Blue dashed curve represents high-frequency white noise ($\propto \tau^{-1/2}$), red dotted line shows long-term random walk positional drift ($\propto \tau^{+1/2}$), and the dark red curve indicates the total empirical model with optimal stability minimum $\sigma_{y,min} \approx 0.042\text{ mas}$ at $\tau \approx 48\text{ days}$.</em>
                         </div>
                     </div>
 
                     <p class="doc-paragraph">
-                        Quasar 4C31.61 (2201+315) is an essential celestial reference point in the International Celestial Reference Frame (ICRF). To evaluate its positional stability, we analyze multi-year VLBI position time series using the Allan standard deviation method.
+                        Quasar 4C31.61 (2201+315) is an essential celestial reference source in the International Celestial Reference Frame (ICRF). To evaluate its long-term positional stability and suitability as a celestial grid anchor, we analyze multi-year Very Long Baseline Interferometry (VLBI) time series using the Allan standard deviation ($\sigma_y(\tau)$) method.
                     </p>
 
                     <div class="doc-formula-box">
-                        <p class="formula-label">Allan Variance Formula</p>
+                        <p class="formula-label">Allan Variance Formulation</p>
                         <div class="formula-render">
                             $$ \sigma_y^2(\tau) = \frac{1}{2(N-1)} \sum_{i=1}^{N-1} (\bar{y}_{i+1} - \bar{y}_i)^2 $$
                         </div>
                     </div>
 
                     <p class="doc-paragraph">
-                        This model helps separate white frequency noise processes from random walk positional changes caused by plasma jets or structural variations at high resolution.
+                        This time-domain stability technique enables the distinction between high-frequency white noise processes (attributable to atmospheric turbulence and instrumental effects) and low-frequency random walk drifts induced by astrophysical source structure variations and core-jet interaction at microarcsecond scales.
                     </p>
-                </div>
-            </div>
-        </div>
 
-        <!-- 4. ALLAN DEVIATION SIMULATOR WINDOW (Interactive simulation canvas) -->
-        <div class="window" id="win-calc" style="display: none; top: 25%; left: 45%; width: 520px; z-index: 98;">
-            <div class="title-bar" onmousedown="dragStart(event, 'win-calc')">
-                <div class="title-bar-text">Allan_Variance_Simulator.exe</div>
-                <div class="title-bar-controls">
-                    <button class="tbtn" onclick="minimizeWindow('win-calc')">_</button>
-                    <button class="tbtn" onclick="maximizeWindow('win-calc')">口</button>
-                    <button class="tbtn" onclick="closeWindow('win-calc')">X</button>
-                </div>
-            </div>
-            <div class="window-body">
-                <div class="calc-panel">
-                    <div class="canvas-header">
-                        <span class="pixel-heading">Allan Deviation σ_y(τ) Simulation Plot</span>
-                    </div>
-                    <canvas id="allan-canvas" width="480" height="240"></canvas>
-                    
-                    <fieldset class="calc-controls">
-                        <legend>Simulation Control Panel</legend>
-                        <div class="control-row">
-                            <label>Sampling interval τ - <span id="lbl-tau">50 days</span></label>
-                            <input type="range" id="input-tau" min="1" max="500" step="5" value="50">
-                        </div>
-                        <div class="control-row">
-                            <label>VLBI Baseline distance b - <span id="lbl-baseline">8000 km</span></label>
-                            <input type="range" id="input-baseline" min="1000" max="12000" step="250" value="8000">
-                        </div>
-                        <div class="control-row highlight-row">
-                            <span>Computed Deviation σ_y</span>
-                            <span id="lbl-result" class="neon-badge">0.042 mas</span>
-                        </div>
+                    <fieldset class="sys-fieldset" style="margin-top: 15px;">
+                        <legend>Publication Links & Dataset Provenance</legend>
+                        <ul class="tech-list">
+                            <li><strong>arXiv Preprint:</strong> <a href="https://arxiv.org/abs/2401.12325" target="_blank">arXiv:2401.12325 [astro-ph.GA]</a></li>
+                            <li><strong>Publisher DOI:</strong> <a href="https://iopscience.iop.org/article/10.1088/1742-6596/2773/1/012007/meta" target="_blank">IOPScience Journal of Physics Conference Series</a></li>
+                            <li><strong>Primary Research Lead:</strong> Jessica Syafaq Muthmaina (Universitas Gadjah Mada & UNIPD)</li>
+                        </ul>
                     </fieldset>
-                    
-                    <div class="calc-buttons">
-                        <button id="calc-btn" class="win-btn-default">Run Real-time Simulation</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -874,9 +810,7 @@ Established platform for intellectual discourse on science and philosophy.
             <div class="start-item" onclick="launchAndClose('win-research')">
                 <span class="item-name">Quasar.doc</span>
             </div>
-            <div class="start-item" onclick="launchAndClose('win-calc')">
-                <span class="item-name">AllanDev.exe</span>
-            </div>
+
             <div class="start-item" onclick="launchAndClose('win-media')">
                 <span class="item-name">Outreach.url</span>
             </div>
