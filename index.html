@@ -9,7 +9,20 @@
     <!-- Google Fonts for retro pixel art and monospace styling -->
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Silkscreen&family=Share+Tech+Mono&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- MathJax for scientific notation rendering -->
+    <!-- MathJax configuration for inline and display TeX math rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
