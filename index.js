@@ -95,6 +95,10 @@ function openWindow(windowId) {
     win.style.display = 'flex';
     focusWindow(windowId);
     rebuildTaskbarTabs();
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+        try { window.MathJax.typesetPromise([win]); } catch(e){}
+    }
 }
 
 function closeWindow(windowId) {
